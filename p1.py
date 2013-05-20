@@ -6,22 +6,31 @@ import random
 
 print "Hello World!"
 
+cache = dict()
+
+
 
 def name(value):
     print "Hello " + value
     print random.randint(1,6)
     
-def fibonacci(num):
+
+    
+def new_fibonacci(num):
+    
+    if cache.has_key(num):
+        return cache[num]
+    
     if num == 0:
         return 0
   
     if num == 1:
         return 1
 
-    return fibonacci(num - 1) + fibonacci(num - 2)
-
     
-
+    ans = new_fibonacci(num - 1) + new_fibonacci(num - 2)
+    cache[num] = ans
+    return ans
 
     
 # Application code
@@ -30,5 +39,5 @@ if __name__ == "__main__":
     name("Helena")
     print "Working!"
 
-    print "fibonacci(30) is " + `fibonacci(30)`
+    print "new_fibonacci(500) is " + `new_fibonacci(500)`
     print "computed fib"
